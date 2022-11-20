@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addToCart, removeToCart } from "../../redux/actions";
+import { addToCart, removeToCart, emptyCart } from "../../redux/actions";
 
 const cart = [{ name: "iPhone 14 pro max", id: "10", manufacturer: "Apple" }];
 
@@ -8,6 +8,7 @@ function Cart() {
   const handleCartData = (type) => () => {
     if (type === "add") dispatch(addToCart(cart));
     if (type === "remove") dispatch(removeToCart());
+    if (type === "empty") dispatch(emptyCart());
   };
 
   return (
@@ -15,6 +16,7 @@ function Cart() {
       <div style={style.button} className="button">
         <button onClick={handleCartData("add")}>Add</button>
         <button onClick={handleCartData("remove")}>Remove</button>
+        <button onClick={handleCartData("empty")}>Empty</button>
       </div>
     </>
   );
