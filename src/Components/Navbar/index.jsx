@@ -1,9 +1,11 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux";
 
 import "./style.css";
 
 export default function Navbar() {
+  const cartData = useSelector((state) => state.cartData);
+  console.log("cartData", cartData.length);
   return (
     <header>
       <section>
@@ -16,7 +18,7 @@ export default function Navbar() {
               <b>SHOP</b>LANE{" "}
             </a>
           </div>
-          {/* <!-- COLLCETIONS ON WEBSITE --> */}
+
           <div id="collection">
             <div id="clothing">
               <a href="clothing.html"> CLOTHING </a>
@@ -25,9 +27,9 @@ export default function Navbar() {
               <a href="accessories.html"> ACCESSORIES </a>
             </div>
           </div>
-          {/* <!-- SEARCH SECTION --> */}
+
           <div id="search">
-            <i class="fas fa-search search"></i>
+            <i className="fas fa-search search"></i>
             <input
               type="text"
               id="input"
@@ -35,17 +37,16 @@ export default function Navbar() {
               placeholder="Search for Clothing and Accessories"
             />
           </div>
-          {/* <!-- USER SECTION (CART AND USER ICON) --> */}
+
           <div id="user">
             <a href="/cart.html">
               {" "}
-              <i class="fas fa-shopping-cart addedToCart">
-                <div id="badge"> 0 </div>
+              <i className="fas fa-shopping-cart addedToCart">
+                <div id="badge">{cartData.length}</div>
               </i>
             </a>
             <a href="/">
-              {" "}
-              <i class="fas fa-user-circle userIcon"></i>
+              <i className="fas fa-user-circle userIcon"></i>
             </a>
           </div>
         </div>

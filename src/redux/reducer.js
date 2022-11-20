@@ -1,10 +1,14 @@
-import { ADD_TO_CART } from "./constants";
+import { ADD_TO_CART, EMPTY_CART, REMOVE_TO_CART } from "./constants";
 
-export const cartData = (initialState = {}, action = {}) => {
-  console.log("reducer", action);
+export const cartData = (initialState = [], action = {}) => {
   switch (action.type) {
     case ADD_TO_CART:
-      return action.data;
+      return [action.data, ...initialState];
+    case REMOVE_TO_CART:
+      return [action.data, ...initialState];
+
+    case EMPTY_CART:
+      return [action.data, ...initialState];
     default:
       return initialState;
   }
