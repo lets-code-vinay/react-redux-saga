@@ -14,8 +14,7 @@ export default function Navbar() {
           {/* <!-- SHOP NAME --> */}
           <div id="shopName">
             <a href="index.html">
-              {" "}
-              <b>SHOP</b>LANE{" "}
+              <b>SHOP</b>LANE
             </a>
           </div>
 
@@ -40,7 +39,6 @@ export default function Navbar() {
 
           <div id="user">
             <a href="/cart.html">
-              {" "}
               <i className="fas fa-shopping-cart addedToCart">
                 <div id="badge">{cartData.length}</div>
               </i>

@@ -5,6 +5,7 @@ const cart = [{ name: "iPhone 14 pro max", id: "10", manufacturer: "Apple" }];
 
 function Cart() {
   const dispatch = useDispatch();
+
   const handleCartData = (type) => () => {
     if (type === "add") dispatch(addToCart(cart));
     if (type === "remove") dispatch(removeToCart());
@@ -13,7 +14,7 @@ function Cart() {
 
   return (
     <>
-      <div style={style.button} className="button">
+      <div style={style.buttons} className="button">
         <button onClick={handleCartData("add")}>Add</button>
         <button onClick={handleCartData("remove")}>Remove</button>
         <button onClick={handleCartData("empty")}>Empty</button>
@@ -25,7 +26,7 @@ function Cart() {
 export default Cart;
 
 const style = {
-  button: {
+  buttons: {
     // marginTop: "10%",
   },
 };
