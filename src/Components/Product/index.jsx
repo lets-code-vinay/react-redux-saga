@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeToCart } from "../../redux/actions";
 import {
   addProduct,
   emptyProduct,
@@ -23,75 +24,84 @@ function Product() {
     if (type === "get") dispatch(getProducts());
   };
 
+  React.useEffect(() => {
+    // firing action to getDispatch
+    dispatch(getProducts());
+  }, []);
+
   return (
     <>
       <div style={style.buttons} className="button">
-        <button onClick={handleProductData("get")}>Get Products</button>
+        {/* <button onClick={handleProductData("get")}>Get Products</button>
         <button onClick={handleProductData("add")}>Add Product</button>
-        <button onClick={handleProductData("remove")}>Remove Product</button>
+        <button onClick={handleProductData("remove")}>Remove Product</button> */}
         <button onClick={handleProductData("empty")}>Empty Product</button>
       </div>
 
       <div className="product-body">
-        {products.map(
-          (
-            {
-              brand = "",
-              category = "",
-              description = "",
-              discountPercentage = 0,
-              id = 0,
-              images = [],
-              thumbnail = "",
-              price = 0,
-              rating = 0,
-              stock = 0,
-              title = "",
-            },
-            index
-          ) => {
-            return (
-              <div class="product" key={`${id}-${index}-${title}`}>
-                <img class="item-image" src={thumbnail} alt={title} />
-                <div class="item-sub-image-container">
-                  {images.map((image, index) => {
-                    if (index > 3) return "";
-                    return (
-                      <img class="item-sub-image" src={image} alt={title} />
-                    );
-                  })}
-                </div>
-                <h3 class="sub-title">{title}</h3>
-                <h5 class="brand">
-                  Brand:<strong>{brand}</strong>
-                </h5>
-                <p class="category">
-                  Category:<strong>{category}</strong>
-                </p>
-                <p class="surfboard-price">
-                  Starts at <strong>${price}</strong>
-                </p>
-                <p class="description">
-                  Description: <strong>{description}</strong>
-                </p>
-                <p class="rating">
-                  Rating:<strong>{rating}</strong>
-                </p>
-                <p class="stock">
-                  In Stock:<strong>{stock}</strong>
-                </p>
-                <p class="discountPercentage">
-                  Discount:<strong>{discountPercentage}%</strong>
-                </p>
-
-                <a href="/" class="button">
-                  BUY
-                </a>
-                <button>Add to cart</button>
+        {products.map((cart, index) => {
+          const {
+            brand = "",
+            category = "",
+            description = "",
+            discountPercentage = 0,
+            id = 0,
+            images = [],
+            thumbnail = "",
+            price = 0,
+            rating = 0,
+            stock = 0,
+            title = "",
+          } = cart || {};
+          return (
+            <div className="product" key={`${id}-${index}-${title}`}>
+              <img className="item-image" src={thumbnail} alt={title} />
+              <div className="item-sub-image-container">
+                {images.map((image, index) => {
+                  if (index > 3) return "";
+                  return (
+                    <img
+                      key={index}
+                      className="item-sub-image"
+                      src={image}
+                      alt={title}
+                    />
+                  );
+                })}
               </div>
-            );
-          }
-        )}
+              <h3 className="sub-title">{title}</h3>
+              <h5 className="brand">
+                Brand:<strong>{brand}</strong>
+              </h5>
+              <p className="category">
+                Category:<strong>{category}</strong>
+              </p>
+              <p className="surfboard-price">
+                Starts at <strong>${price}</strong>
+              </p>
+              <p className="description">
+                Description: <strong>{description}</strong>
+              </p>
+              <p className="rating">
+                Rating:<strong>{rating}</strong>
+              </p>
+              <p className="stock">
+                In Stock:<strong>{stock}</strong>
+              </p>
+              <p className="discountPercentage">
+                Discount:<strong>{discountPercentage}%</strong>
+              </p>
+
+              <a href="/" className="button">
+                BUY
+              </a>
+              <button onClick={dispatch(addToCart(cart))}>Add to cart</button>
+              <button onClick={dispatch(removeToCart(id))}>
+                Remove from cart
+              </button>
+            </div>
+          );
+        })}
       </div>
     </>
   );

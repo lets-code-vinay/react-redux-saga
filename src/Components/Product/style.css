@@ -18,6 +18,8 @@
   width: 90%;
   height: 220px;
   margin: 2% 5%;
+  border: 1px solid grey;
+
   border-radius: 10px;
 }
 .item-sub-image-container {
