@@ -23,27 +23,6 @@ function Product() {
     if (type === "get") dispatch(getProducts());
   };
 
-  const abc = {
-    brand: "Apple",
-    category: "smartphones",
-    description: "An apple mobile which is nothing like apple",
-    discountPercentage: 12.96,
-    id: 1,
-    images: [
-      "https://i.dummyjson.com/data/products/1/1.jpg",
-      "https://i.dummyjson.com/data/products/1/2.jpg",
-      "https://i.dummyjson.com/data/products/1/3.jpg",
-      "https://i.dummyjson.com/data/products/1/4.jpg",
-      "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-    ],
-    length: 5,
-    price: 549,
-    rating: 4.69,
-    stock: 94,
-    thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-    title: "iPhone 9",
-  };
-
   return (
     <>
       <div style={style.buttons} className="button">
@@ -74,6 +53,14 @@ function Product() {
             return (
               <div class="product" key={`${id}-${index}-${title}`}>
                 <img class="item-image" src={thumbnail} alt={title} />
+                <div class="item-sub-image-container">
+                  {images.map((image, index) => {
+                    if (index > 3) return "";
+                    return (
+                      <img class="item-sub-image" src={image} alt={title} />
+                    );
+                  })}
+                </div>
                 <h3 class="sub-title">{title}</h3>
                 <h5 class="brand">
                   Brand:<strong>{brand}</strong>
